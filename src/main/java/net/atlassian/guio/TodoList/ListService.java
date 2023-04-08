@@ -1,5 +1,6 @@
 package net.atlassian.guio.TodoList;
 
+import net.atlassian.guio.TodoList.entities.TodoList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

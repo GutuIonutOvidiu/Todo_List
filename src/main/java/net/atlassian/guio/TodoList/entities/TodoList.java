@@ -1,4 +1,4 @@
-package net.atlassian.guio.TodoList;
+package net.atlassian.guio.TodoList.entities;
 
 import jakarta.persistence.*;
 
@@ -15,7 +15,7 @@ public class TodoList {
 
    @ManyToOne
    @JoinColumn(name="user_id")
-   private TodoUser creator;
+   private User creator;
 
     public TodoList(Long id, List<Task> tasks) {
         this.id = id;
