@@ -20,11 +20,11 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name="asignee_id")
-    private User asignee;
+    private TodoUser asignee;
 
     @ManyToOne
     @JoinColumn(name="reporter_id")
-    private User reporter;
+    private TodoUser reporter;
 
     public Task(long id, String description, boolean taskDone) {
         this.id = id;

@@ -1,4 +1,4 @@
-package net.atlassian.guio.TodoList;
+package net.atlassian.guio.TodoList.entities;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name="user")
-public class User {
+public class TodoUser {
     @Id
     private final Long id;
     @Column(name="firstName")
@@ -29,7 +29,7 @@ public class User {
     @OneToMany(mappedBy = "creator")
     private List<TodoList> my_lists;
 
-    public User(Long id, String firstName, String secondName, String userName, String emailAdress, String telegramToken) {
+    public TodoUser(Long id, String firstName, String secondName, String userName, String emailAdress, String telegramToken) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
