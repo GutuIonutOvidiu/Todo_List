@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findUserByTelegramToken (String token);
+    User save (User newUser);
+
 }
 
 

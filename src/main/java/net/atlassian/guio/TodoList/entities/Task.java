@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name="task")
 public class Task {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private final long id;
 
     @Column(name="description")

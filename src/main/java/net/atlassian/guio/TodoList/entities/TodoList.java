@@ -9,6 +9,7 @@ import java.util.List;
 public class TodoList {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private final Long id;
    @OneToMany(mappedBy = "todoList")
     private List<Task> tasks;

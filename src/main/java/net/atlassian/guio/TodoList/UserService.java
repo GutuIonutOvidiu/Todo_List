@@ -10,9 +10,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User addUser(User todoUser) {
+    public User addUser(User newUser) {
 
-        return userRepository.save(todoUser);
+        return userRepository.save(newUser);
     }
 
     public User login (String token){

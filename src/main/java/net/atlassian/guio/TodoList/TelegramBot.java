@@ -17,16 +17,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
+import java.util.List;
 
 @BotController
-public class MyTelegramBot implements TelegramMvcController {
+public class TelegramBot implements TelegramMvcController {
 
     @Autowired
     private UserService userService;
-
-    @Value("${bot.token}")
     private String token;
 
+    //public TelegramBot(String token) {
+    //    this.token = token;
+    //}
     public net.atlassian.guio.TodoList.entities.User login(){
         return this.userService.login(this.token);
     }
@@ -35,6 +37,7 @@ public class MyTelegramBot implements TelegramMvcController {
     public String getToken() {
         return token;
     }
+
 
     @BotRequest(value = "/hello", type = {MessageType.CALLBACK_QUERY, MessageType.MESSAGE})
     public BaseRequest hello(User user, Chat chat) {
@@ -46,29 +49,9 @@ public class MyTelegramBot implements TelegramMvcController {
         return new SendMessage(chat.id(), "Hello, " + loggedInUser.getUserName() + "!");
     }
 
-    @MessageRequest("/hello {firstname:[\\S]+} {lastname:[\\S]+} {username:[\\S]+} {email:[\\S]+}")
-    public String helloWithNewUserDetails(@BotPathVariable("firstname") String firstname, @BotPathVariable("lastname") String lastame,@BotPathVariable("username") String username,@BotPathVariable("email") String email) {
-        net.atlassian.guio.TodoList.entities.User newUser = new net.atlassian.guio.TodoList.entities.User(firstname,lastame,username,email, this.token);
-        this.userService.addUser(newUser);
-        // Return a string if you need to reply with a simple message
-        return "Hello, " + username + " your accont hase been created";
+    @MessageRequest(value = "/test")
+    public String test(User user, Chat chat) {
+        return "ok";
     }
 
-    @MessageRequest("/helloCallback")
-    public String helloWithCustomCallback(TelegramRequest request, User user) {
-        request.setCallback(new Callback() {
-            @Override
-            public void onResponse(BaseRequest request, BaseResponse response) {
-                // TODO
-            }
-
-            @Override
-            public void onFailure(BaseRequest request, IOException e) {
-                // TODO
-            }
-        });
-        return "Hello, " + user.firstName() + "!";
-    }
-
-    //comanda noua register user
 }

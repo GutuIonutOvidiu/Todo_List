@@ -1,6 +1,7 @@
 package net.atlassian.guio.TodoList.entities;
 
 import jakarta.persistence.*;
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.Generated;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -16,11 +17,11 @@ public class User {
     private   String firstName;
     @Column(name="secondName")
     private   String secondName;
-    @Column(name="userName")
+    @Column(name="userName",unique = true)
     private   String userName;
-    @Column(name="emailAdress")
+    @Column(name="emailAdress",unique = true)
     private   String emailAdress;
-    @Column(name="telegramToken")
+    @Column(name="telegramToken",unique = true)
     private   String telegramToken;
 
     @OneToMany(mappedBy = "asignee")
